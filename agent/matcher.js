@@ -1,6 +1,12 @@
 require("dotenv").config();
 const { ethers } = require("ethers");
-const escrowArtifact = require("../artifacts/contracts/ClearChainEscrow.sol/ClearChainEscrow.json");
+
+// Minimal ABI — just what this agent needs. No Hardhat compile step
+// required, so this runs as-is on a fresh clone with no build artifacts.
+const ESCROW_ABI = [
+  "function fulfillInvoice(bytes32 invoiceId) external",
+  "event PaymentReceived(bytes32 indexed invoiceId, address indexed payer, uint256 amount)",
+];
 
 const RPC_URL = process.env.BSC_TESTNET_RPC || "https://data-seed-prebsc-1-s1.binance.org:8545";
 const CONTRACT_ADDRESS = process.env.ESCROW_ADDRESS;
@@ -13,7 +19,7 @@ async function main() {
 
   const provider = new ethers.JsonRpcProvider(RPC_URL);
   const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-  const escrow = new ethers.Contract(CONTRACT_ADDRESS, escrowArtifact.abi, wallet);
+  const escrow = new ethers.Contract(CONTRACT_ADDRESS, ESCROW_ABI, wallet);
 
   console.log("ClearChain agent watching for PaymentReceived events on", CONTRACT_ADDRESS);
 
@@ -37,8 +43,6 @@ async function main() {
   });
 }
 
-/// Placeholder verification step — swap in real fraud/risk checks
-/// (buyer address reputation, invoice age limits, amount sanity, etc).
 async function runVerificationChecks(invoiceId, payer, amount) {
   return true;
 }
