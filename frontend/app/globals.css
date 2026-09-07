@@ -1,0 +1,266 @@
+:root {
+  --paper: #f1efea;
+  --paper-raised: #ffffff;
+  --ink: #171f2b;
+  --ink-soft: #5b6472;
+  --brass: #b8863a;
+  --brass-deep: #96692a;
+  --stamp-green: #3f6b4f;
+  --stamp-taupe: #8a7f6a;
+  --stamp-red: #9c4438;
+  --rule: #d8d3c6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--brass-deep);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 20px;
+  margin-bottom: 32px;
+}
+
+.wordmark {
+  font-family: var(--font-display), serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.network-badge {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--brass-deep);
+}
+
+.btn-primary:disabled {
+  background: var(--stamp-taupe);
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--brass-deep);
+  font-size: 13px;
+  padding: 4px 8px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ticket {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px;
+}
+
+.ticket h2,
+.ledger h2 {
+  font-family: var(--font-display), serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+.ticket form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ticket label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.ticket input {
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 10px 12px;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--stamp-taupe);
+  margin: 8px 0 0;
+}
+
+.ledger {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 24px;
+}
+
+.ledger-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.ledger-count {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+  padding: 8px;
+}
+
+td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+}
+
+.mono {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+}
+
+.mono.small {
+  font-size: 12px;
+  color: var(--ink-soft);
+  word-break: break-all;
+}
+
+.status {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.status-open {
+  background: #efe9dd;
+  color: var(--stamp-taupe);
+}
+
+.status-paid {
+  background: #e9e2cf;
+  color: var(--brass-deep);
+}
+
+.status-fulfilled {
+  background: #e1ebe4;
+  color: var(--stamp-green);
+}
+
+.status-cancelled {
+  background: #f1dedb;
+  color: var(--stamp-red);
+}
+
+.empty {
+  color: var(--ink-soft);
+  font-size: 14px;
+  padding: 24px 0;
+  text-align: center;
+}
+
+.status-line {
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.pay-page {
+  max-width: 480px;
+}
+
+.amount-due {
+  font-family: var(--font-display), serif;
+  font-size: 36px;
+  font-weight: 600;
+  margin: 12px 0;
+}
