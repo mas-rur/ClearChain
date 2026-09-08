@@ -1,14 +1,21 @@
 :root {
-  --paper: #f1efea;
+  --paper: #f5f1e8;
   --paper-raised: #ffffff;
-  --ink: #171f2b;
-  --ink-soft: #5b6472;
-  --brass: #b8863a;
-  --brass-deep: #96692a;
-  --stamp-green: #3f6b4f;
-  --stamp-taupe: #8a7f6a;
-  --stamp-red: #9c4438;
-  --rule: #d8d3c6;
+  --ink: #171a1f;
+  --ink-soft: #6b7280;
+  --brass: #c99a3d;
+  --brass-deep: #a67722;
+  --brass-tint: #f6e9cd;
+  --stamp-green: #2f7a52;
+  --stamp-green-tint: #e1f2e8;
+  --stamp-taupe: #8a8171;
+  --stamp-taupe-tint: #efece2;
+  --stamp-red: #b1483a;
+  --stamp-red-tint: #f6e2df;
+  --rule: #e2ddd0;
+  --shadow-sm: 0 1px 2px rgba(23, 26, 31, 0.05);
+  --shadow-md: 0 10px 28px rgba(23, 26, 31, 0.09);
+  --radius: 14px;
 }
 
 * {
@@ -21,17 +28,27 @@ body {
   padding: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-body), -apple-system, sans-serif;
+  font-family: var(--font-sans), -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
   color: var(--brass-deep);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input {
+  font-family: inherit;
 }
 
 button {
-  font-family: inherit;
   cursor: pointer;
   border: none;
 }
@@ -44,31 +61,33 @@ a:focus-visible {
 }
 
 .page {
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 32px 24px 64px;
+  padding: 20px 16px 56px;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap;
+  gap: 12px;
   padding-bottom: 20px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
 }
 
 .wordmark {
-  font-family: var(--font-display), serif;
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .network-badge {
@@ -76,22 +95,31 @@ a:focus-visible {
   font-size: 12px;
   color: var(--ink-soft);
   border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 4px 8px;
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: var(--paper-raised);
 }
 
 .btn-primary {
   background: var(--ink);
   color: var(--paper);
-  padding: 10px 18px;
-  border-radius: 4px;
+  padding: 12px 22px;
+  min-height: 44px;
+  border-radius: 999px;
   font-size: 14px;
-  font-weight: 500;
-  transition: background 0.15s ease;
+  font-weight: 600;
+  transition: transform 0.12s ease, background 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary:hover {
   background: var(--brass-deep);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
 }
 
 .btn-primary:disabled {
@@ -100,37 +128,43 @@ a:focus-visible {
 }
 
 .btn-ghost {
-  background: transparent;
-  color: var(--brass-deep);
+  background: var(--stamp-taupe-tint);
+  color: var(--ink);
   font-size: 13px;
-  padding: 4px 8px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+  min-height: 36px;
 }
 
 .layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 32px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-@media (max-width: 720px) {
+@media (min-width: 760px) {
   .layout {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    align-items: start;
+    gap: 28px;
   }
 }
 
-.ticket {
+.ticket,
+.ledger {
   background: var(--paper-raised);
   border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 24px;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
 }
 
 .ticket h2,
 .ledger h2 {
-  font-family: var(--font-display), serif;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   margin: 0 0 16px;
 }
 
@@ -145,42 +179,47 @@ a:focus-visible {
   flex-direction: column;
   gap: 6px;
   font-size: 13px;
+  font-weight: 500;
   color: var(--ink-soft);
 }
 
 .ticket input {
   font-family: var(--font-mono), monospace;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 10px 12px;
+  border-radius: 10px;
+  padding: 12px 14px;
+  min-height: 46px;
+}
+
+.ticket input:focus {
+  border-color: var(--brass);
+}
+
+.ticket .btn-primary {
+  width: 100%;
 }
 
 .hint {
   font-size: 12px;
   color: var(--stamp-taupe);
   margin: 8px 0 0;
-}
-
-.ledger {
-  background: var(--paper-raised);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 24px;
+  line-height: 1.5;
 }
 
 .ledger-head {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   margin-bottom: 16px;
 }
 
 .ledger-count {
   font-size: 13px;
   color: var(--ink-soft);
+  font-family: var(--font-mono), monospace;
 }
 
 table {
@@ -191,16 +230,20 @@ table {
 th {
   text-align: left;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink-soft);
   border-bottom: 1px solid var(--rule);
-  padding: 8px;
+  padding: 10px 8px;
 }
 
 td {
-  padding: 12px 8px;
+  padding: 14px 8px;
   border-bottom: 1px solid var(--rule);
   font-size: 14px;
+}
+
+tr:last-child td {
+  border-bottom: none;
 }
 
 .mono {
@@ -215,43 +258,107 @@ td {
 }
 
 .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
-  font-weight: 500;
-  padding: 3px 8px;
-  border-radius: 4px;
+  font-weight: 600;
+  padding: 5px 10px 5px 8px;
+  border-radius: 999px;
+}
+
+.status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .status-open {
-  background: #efe9dd;
+  background: var(--stamp-taupe-tint);
   color: var(--stamp-taupe);
 }
 
 .status-paid {
-  background: #e9e2cf;
+  background: var(--brass-tint);
   color: var(--brass-deep);
 }
 
 .status-fulfilled {
-  background: #e1ebe4;
+  background: var(--stamp-green-tint);
   color: var(--stamp-green);
 }
 
 .status-cancelled {
-  background: #f1dedb;
+  background: var(--stamp-red-tint);
   color: var(--stamp-red);
 }
 
 .empty {
   color: var(--ink-soft);
   font-size: 14px;
-  padding: 24px 0;
+  padding: 32px 16px;
   text-align: center;
 }
 
 .status-line {
-  margin-top: 24px;
+  margin-top: 20px;
   font-size: 13px;
   color: var(--ink-soft);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+/* Stack the ledger table into cards on narrow screens instead of forcing
+   horizontal scroll on a data table. */
+@media (max-width: 700px) {
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tbody tr {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 4px 14px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
 }
 
 .pay-page {
@@ -259,8 +366,13 @@ td {
 }
 
 .amount-due {
-  font-family: var(--font-display), serif;
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 40px;
+  font-weight: 700;
   margin: 12px 0;
+  letter-spacing: -0.02em;
+}
+
+.pay-page .btn-primary {
+  width: 100%;
+  margin-top: 12px;
 }
