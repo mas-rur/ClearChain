@@ -36,17 +36,21 @@ export default function InvoiceLedger({ invoices, onRefresh, escrowAddress }) {
               const payLink = `/pay/${inv.invoiceId}`;
               return (
                 <tr key={inv.invoiceId}>
-                  <td className="mono">{shortHex(inv.invoiceId)}</td>
-                  <td className="mono">{formatUnits(total, 18)}</td>
-                  <td>
+                  <td data-label="Invoice" className="mono">
+                    {shortHex(inv.invoiceId)}
+                  </td>
+                  <td data-label="Amount" className="mono">
+                    {formatUnits(total, 18)}
+                  </td>
+                  <td data-label="Status">
                     <span className={`status status-${STATUS_LABELS[inv.status].toLowerCase()}`}>
                       {STATUS_LABELS[inv.status]}
                     </span>
                   </td>
-                  <td className="mono">
+                  <td data-label="Pay link" className="mono">
                     <a href={payLink}>{payLink}</a>
                   </td>
-                  <td>
+                  <td data-label="">
                     <button className="btn-ghost" onClick={() => onRefresh(inv.invoiceId)}>
                       Refresh
                     </button>
