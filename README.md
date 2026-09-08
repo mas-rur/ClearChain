@@ -78,10 +78,6 @@ This is a hackathon-stage build, not production-ready:
   use, especially around reentrancy and the ERC20 transfer paths.
 - Recommended for BSC testnet during the hackathon; audit before mainnet.
 
-## Hackathon track fit
-
-Payments / DeFi (escrowed, trustless settlement) and AI Agents (agent
-wallet gates fund release; drop-in ready for the BNB AI Agent SDK).
 
 ## Next steps
 
